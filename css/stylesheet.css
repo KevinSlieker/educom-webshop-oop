@@ -29,11 +29,12 @@ h1 {
 	border-color: blue;
 	border-radius: 20px;
 	margin-left: 50px;
-	margin-right: 50px;
-	margin-top: 5px;
 	margin-bottom: 5px;	
 	padding-left: 30px;
+	padding-right: 30px;
 	padding-bottom: 30px;
+	display: inline-block;
+	overflow: hidden;
 }
 
 
@@ -72,7 +73,7 @@ padding-right: 10px;
 }
 
 .info input, .input input{
-		width: 400px;
+	width: 400px;
 }
 
 .info label, .input label{
@@ -83,7 +84,24 @@ div.product > div.amount button{
 width: 20px;
 }
 
-div.product > div.amount {
-	display: inline-block;
+div.amount form {
+	display: inline;
 }
 
+
+div.products img {
+	float: left;
+	margin-right: 20px;
+}
+
+div.text {
+	float: left;
+}
+
+div.products p {
+	display: inline;
+}
+
+div.total {
+	clear: left;
+}
