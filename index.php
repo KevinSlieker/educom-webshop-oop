@@ -13,7 +13,7 @@ $page = getRequestedPage();
 $data = processRequest($page);
 showResponsePage($data);
 
-//var_dump($data);
+var_dump($data);
 var_dump($_SESSION);
 
 function processRequest($page)  {

@@ -9,16 +9,28 @@
             $this->data = $myData;
         }       
 
-        protected function title()         {
-            echo "<title>" . $this->data['page'] . "</title>";
+        private function title() {
+            echo "<title>"; 
+            $this->showHead();
+            echo "</title>";
         } 
+
+        protected function showHead() {
+            echo 'Basic';
+        }
         
         private   function cssLinks() {
             echo '<link rel="stylesheet" href="CSS/stylesheet.css">';
         }
 
         private   function bodyHeader() {
-            echo '<h1>' . $this->data['page'] . '</h1>';
+            echo '<h1>';
+            $this->showHeader();
+            echo '</h1>';
+        }
+
+        protected function showHeader() {
+            echo 'Basic';
         }
 
         private   function mainMenu() {
