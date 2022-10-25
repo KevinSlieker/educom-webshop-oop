@@ -66,6 +66,15 @@ function processRequest($page)  {
             break;
      }
       $data['page'] = $page;
+      $data['menu'] = array('home' => 'Home',  'about'=> 'About', 'contact' => 'Contact', 'webshop'=> 'Webshop');
+      
+      if (isUserLoggedIn()) {
+            $data['menu']['shoppingcart'] = "Shoppingcart";
+            $data['menu']["logout"] = "Logout " . getLoggedInUsername();
+      } else {
+        $data['menu']['login'] = "Login";
+        $data['menu']["register"] = "Register";
+      }
       return $data;
  
 }

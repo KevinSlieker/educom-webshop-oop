@@ -1,0 +1,107 @@
+/* Cascade Style Sheet for this website    hoofdtekst???*/
+
+body {
+	max-width : 800px;
+	margin: auto;
+}
+
+h1 {
+	text-align: center;
+	font-size: 48px;
+	}
+
+.error {
+	color: red;
+}
+
+.products a {
+	text-decoration: none;
+	color: black;
+}
+
+.products a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+.product {
+	border-style: solid;
+	border-color: blue;
+	border-radius: 20px;
+	margin-left: 50px;
+	margin-bottom: 5px;	
+	padding-left: 30px;
+	padding-right: 30px;
+	padding-bottom: 30px;
+	display: inline-block;
+	overflow: hidden;
+}
+
+
+
+div.links {
+	list-style-type: none;
+	background-color: blue;
+	border-radius: 20px;
+}
+
+div.links li {
+	display: inline;
+	padding-left: 40px;
+}
+
+div.links li a {
+	text-decoration: none;
+	text-align: center;
+	list-style-type: none;
+	color: white;
+}
+
+p1,p2,p3 {
+	font-size: 12px;
+	color: black;
+	background-color: white;
+}
+
+footer {
+background-color: black;
+border-radius: 20px;
+color: white;
+font-size: 10px;
+text-align: right;
+padding-right: 10px;
+}
+
+.info input, .input input{
+	width: 400px;
+}
+
+.info label, .input label{
+	float: left;
+}
+
+div.product > div.amount button{
+width: 20px;
+}
+
+div.amount form {
+	display: inline;
+}
+
+
+div.products img {
+	float: left;
+	margin-right: 20px;
+}
+
+div.text {
+	float: left;
+}
+
+div.products p {
+	display: inline;
+}
+
+div.total {
+	clear: left;
+}
