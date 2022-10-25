@@ -28,7 +28,7 @@ function getProductDetails($productId) {
      return array("product" => $product, "genericErr" => $genericErr);
 
 }
-
+/*
 function addAction($nextpage, $action, $button, $productId = NULL, $name = NULL, $addquantity = 0){
      if (isUserLoggedIn()){
           echo '<form action="index.php" method="post">';
@@ -53,7 +53,7 @@ function addAction($nextpage, $action, $button, $productId = NULL, $name = NULL,
      }
 
 }
-
+*/
 function handleActions(){
      $data = array();
      $action = getPostVar("action");

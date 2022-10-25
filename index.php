@@ -78,7 +78,7 @@ function processRequest($page)  {
       return $data;
  
 }
- 
+/* 
 function showContent($data) 
 { 
     if (isset($data['genericErr'])) {
@@ -126,7 +126,7 @@ function showContent($data)
             echo 'Error : Page NOT Found';  
    }     
 }  
-
+*/
 
 function getRequestedPage() 
 {     
@@ -144,10 +144,25 @@ function getRequestedPage()
 
 function showResponsePage($data) 
 { 
-   beginDocument(); 
-   showHeadSection($data); 
-   showBodySection($data); 
-   endDocument(); 
+    switch($data['page']) 
+    { 
+        case 'home':
+            require_once("views/home_doc.php");
+            $view = new HomeDoc($data);
+            break;
+        case 'about':
+            require_once("views/about_doc.php");
+            $view = new AboutDoc($data);
+            break;
+        case 'contact':
+            require_once("views/contact_doc.php");
+            $view = new ContactDoc($data);
+            break;
+        default:
+            var_dump($data['page']);
+    // HIER MOET IK VERDER, Moet de thanks doc maken.
+    }
+    $view->show();
 }
 
 function getArrayVar($array, $key, $default='') 
@@ -165,7 +180,7 @@ function getUrlVar($key, $default='')
 { 
    return getArrayVar($_GET, $key, $default);
 } 
-
+/*
 function beginDocument() 
 { 
    echo '<!doctype html> 
@@ -316,7 +331,7 @@ function endDocument()
 { 
    echo  '</html>'; 
 } 
-
+*/
 function logToServer($message) {
     echo "logToServer: $message";
 }

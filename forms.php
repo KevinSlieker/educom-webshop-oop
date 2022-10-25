@@ -55,7 +55,7 @@ showFormItem("communication", "radio", "Voorkeur communicatie:", $data, NULL, ar
 		<br>
 	</div>
 */
-
+/*
 function showFormStart() {
     echo '<form action="index.php" method="post">' . PHP_EOL;
 }
@@ -103,6 +103,6 @@ function showFormEnd($page, $name) {
 
     echo '</form>' . PHP_EOL;
 }
-
+*/
 
 ?>
