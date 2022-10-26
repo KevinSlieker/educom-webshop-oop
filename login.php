@@ -1,5 +1,5 @@
 <?php
-
+/*
 function showLoginHead(){
     echo "Login";
 }
@@ -18,5 +18,5 @@ showFormSectionEnd();
 showFormEnd("login", "Login");
 }
 
-
+*/
 ?>

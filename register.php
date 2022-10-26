@@ -1,5 +1,5 @@
 <?php
-
+/*
 function showRegisterHead(){
     echo "Register";
 }
@@ -19,4 +19,5 @@ showFormItem("passwordrepeat", "password", "Herhaal wachtwoord:", $data, "Wachtw
 showFormSectionEnd();
 showFormEnd("register", "Register");
 }
+*/
 ?>

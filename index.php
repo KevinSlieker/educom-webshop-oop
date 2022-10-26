@@ -158,6 +158,18 @@ function showResponsePage($data)
             require_once("views/contact_doc.php");
             $view = new ContactDoc($data);
             break;
+        case 'thanks':
+            require_once("views/thanks_contact_doc.php");
+            $view = new ThanksContactDoc($data);
+            break;
+        case 'login':
+            require_once("views/login_doc.php");
+            $view = new LoginDoc($data);
+            break;
+        case 'register':
+            require_once("views/register_doc.php");
+            $view = new RegisterDoc($data);
+            break;
         default:
             var_dump($data['page']);
     // HIER MOET IK VERDER, Moet de thanks doc maken.

@@ -1,5 +1,5 @@
 <?php
-
+/*
 	define("PREAMBLE", array("mr" => "Meneer", "mrs" => "Mevrouw"));
 	define("COMMUNICATION", array("email" => "Email", "phone" => "Telefoon"));
 
@@ -46,5 +46,5 @@ function showContactThanks($data){
 	echo "<br>";
 	echo 'Text: ' . $data['input'] . PHP_EOL;
 }
-
+*/
 ?>
