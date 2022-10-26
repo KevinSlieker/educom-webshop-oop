@@ -2,12 +2,7 @@
     require_once 'basic_doc.php';
    
     class AboutDoc extends BasicDoc 
-    { 
-        public function __construct($myData)
-        { 
-            // pass the data on to our parent class (BasicDoc)
-            parent::__construct($myData);
-        }       
+    {      
 
         // Override function from basicDoc
         protected function showHead(){
