@@ -1,5 +1,5 @@
 <?php
-
+/*
 function showShoppingcartHead(){
     echo 'Shoppingcart';
 }
@@ -36,5 +36,5 @@ function showShoppingcartContent($data){
     }
     echo '</div>'; 
 }
-
+*/
 ?>

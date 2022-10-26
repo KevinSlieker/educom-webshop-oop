@@ -1,5 +1,5 @@
 <?php
-
+/*
 function showDetailHead($data){
     echo $data['product']['name'];
 }
@@ -17,4 +17,5 @@ function showDetailContent($data) {
     addAction('webshop', 'addToShoppingcart', "Add to shoppingcart", $data['product']['id'], $data['product']['name'], 1);
     echo '</div>';  
 }
+*/
 ?>

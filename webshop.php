@@ -1,5 +1,5 @@
 <?php
-
+/*
 function showWebshopHead(){
     echo "Webshop";
 }
@@ -23,4 +23,5 @@ function showWebshopContent($data) {
     }
     echo '</div>';  
 }
+*/
 ?>

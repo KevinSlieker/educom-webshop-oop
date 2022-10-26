@@ -53,6 +53,12 @@
             echo '<p> Content </p>';
         }
 
+        protected function showGenericErr(){
+            if (isset($this->data['genericErr'])) {
+                echo '<span class="error">' . $this->data['genericErr'] . '</span><br>' . PHP_EOL;
+            }
+        }
+
         private   function bodyFooter() {
             echo '  <footer>
             <h2> &copy;, 2022, Kevin Slieker </h2>
@@ -69,6 +75,7 @@
         protected function bodyContent()         {
             $this->bodyHeader();
             $this->mainMenu();
+            $this->showGenericErr();
             $this->mainContent();
             $this->bodyFooter();
         }   

@@ -170,6 +170,18 @@ function showResponsePage($data)
             require_once("views/register_doc.php");
             $view = new RegisterDoc($data);
             break;
+        case 'webshop':
+            require_once("views/webshop_doc.php");
+            $view = new WebshopDoc($data);
+            break;
+        case 'detail':
+            require_once("views/detail_doc.php");
+            $view = new DetailDoc($data);
+            break;
+        case 'shoppingcart':
+            require_once("views/shoppingcart_doc.php");
+            $view = new ShoppingcartDoc($data);
+            break;
         default:
             var_dump($data['page']);
     // HIER MOET IK VERDER, Moet de thanks doc maken.

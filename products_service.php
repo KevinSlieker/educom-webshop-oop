@@ -2,7 +2,7 @@
 
 function getWebshopProducts() {
     $products = array();
-    $genericErr = "";
+    $genericErr = NULL;
     try {
          $products = getAllProducts();
     }
@@ -17,7 +17,7 @@ function getWebshopProducts() {
 
 function getProductDetails($productId) {
     $product = NULL;
-    $genericErr = "";
+    $genericErr = NULL;
     try {
          $product = findProductById($productId);
     }
@@ -78,7 +78,7 @@ function handleActions(){
 }
 
 function storeOrder($user_id, $shoppingcartproducts) {
-     $genericErr = '';
+     $genericErr = NULL;
 
      try{
      saveOrder($user_id, $shoppingcartproducts);
@@ -95,7 +95,7 @@ function storeOrder($user_id, $shoppingcartproducts) {
 function getShoppingcartProducts() {
      $shoppingcartproducts = array();
      $total = 0;
-     $genericErr= "";
+     $genericErr= NULL;
      try {
           $shoppingcart = getShoppingcart();
           $products = getAllProducts();

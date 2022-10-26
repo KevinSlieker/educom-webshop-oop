@@ -17,6 +17,7 @@ function getLoggedInUserName() {
  
 function doLogoutUser() {
     unset($_SESSION['login']);
+    unset($_SESSION['user_id']);
 }
 
 function getShoppingcart(){

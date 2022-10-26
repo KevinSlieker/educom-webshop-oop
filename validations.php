@@ -60,7 +60,7 @@ function validateContact() {
 function validateRegister() {
     $nameErr = $emailErr = $passwordErr = $passwordrepeatErr = "";
 	$name = $email = $password = $passwordrepeat = "";
-	$genericErr = '';
+	$genericErr = NULL;
 	$valid = false;
 
 
@@ -123,7 +123,7 @@ function validateLogin() {
 	$valid = false;
     $name = '';
 	$user_id = '';
-	$genericErr = '';
+	$genericErr = NULL;
 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
