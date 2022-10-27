@@ -3,10 +3,10 @@
    
     class BasicDoc extends HtmlDoc 
     { 
-        protected $data;
+        protected $model;
 
-        public function __construct($myData) {
-            $this->data = $myData;
+        public function __construct($model) {
+            $this->model = $model;
         }       
 
         private function title() {
@@ -36,26 +36,26 @@
         private   function mainMenu() {
             echo '<div class="links">
             <ul>';
-            foreach($this->data['menu'] as $page => $label) {
-                echo $this->showMenuItem($page, $label);
+            foreach($this->model->menu as $MenuItem) {
+                echo $MenuItem->showMenuItem();
             }
             echo '</ul>
             </div>';
 
             
         }
-        
+        /*
         private function showMenuItem($page, $label) {
                 return PHP_EOL.'<li><a Href="index.php?page='. $page .'">'.$label.'</a></li>';
             }
-
+*/
         protected function mainContent() {
             echo '<p> Content </p>';
         }
 
         protected function showGenericErr(){
-            if (isset($this->data['genericErr'])) {
-                echo '<span class="error">' . $this->data['genericErr'] . '</span><br>' . PHP_EOL;
+            if (isset($this->model->genericErr)) {
+                echo '<span class="error">' . $this->model->genericErr . '</span><br>' . PHP_EOL;
             }
         }
 
