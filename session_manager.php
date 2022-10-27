@@ -1,5 +1,6 @@
 <?php
 
+// class van maken en dan elke functie public maken.
 
 function doLoginUser($name, $user_id) {
     $_SESSION['login'] = $name;
