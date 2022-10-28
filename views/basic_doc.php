@@ -58,6 +58,7 @@
                 echo '<span class="error">' . $this->model->genericErr . '</span><br>' . PHP_EOL;
             }
         }
+        
 
         private   function bodyFooter() {
             echo '  <footer>

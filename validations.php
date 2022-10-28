@@ -1,5 +1,5 @@
 <?php
-
+/*
 function validateContact() {
 	$preambleErr = $nameErr = $emailErr = $communicationErr = $phonenumberErr = $inputErr = "";
 	$preamble = $name = $email = $communication = $phonenumber = $input = "";
@@ -55,8 +55,8 @@ function validateContact() {
 	"communication" => $communication, "communicationErr" => $communicationErr,
 	"phonenumber" => $phonenumber, "phonenumberErr" => $phonenumberErr, 
 	"input" => $input, "inputErr" => $inputErr);
-}
-
+}*/
+/*
 function validateRegister() {
     $nameErr = $emailErr = $passwordErr = $passwordrepeatErr = "";
 	$name = $email = $password = $passwordrepeat = "";
@@ -115,8 +115,8 @@ function validateRegister() {
 	"email" => $email, "emailErr" => $emailErr,
 	"passwordrepeat" => $passwordrepeat, "passwordrepeatErr" => $passwordrepeatErr);
 
-}
-
+}*/
+/*
 function validateLogin() {
     $emailErr = $passwordErr = "";
 	$email = $password = "";
@@ -127,14 +127,15 @@ function validateLogin() {
 
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = test_input(getPostVar('email'));
+        //$this->email = $this->test_input($this->getPostVar('email'));
+		$this->email = $this->getCleanPostVar('email');
 		if (empty($email)) {
 			$emailErr = "Email is verplicht.";
 		} else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 				$emailErr = "Ongeldig email.";
 		}
 
-        $password = test_input(getPostVar('password'));
+        $this->password = $this->test_input($this->getPostVar('password'));
 		if (empty($password)) {
 			$passwordErr = "Wachtwoord is verplicht.";
 		}
@@ -156,7 +157,7 @@ function validateLogin() {
 						break;
 				}
 			} catch (Exception $e) {
-				$genericErr = "Er is een technisch probleem opgetreden.";
+				$this->genericErr = "Er is een technisch probleem opgetreden.";
 				logToServer("authentication failed: ".$e->getMessage());
 			}
 			}
@@ -171,7 +172,7 @@ function validateLogin() {
     "name" => $name, "user_id" => $user_id);
 
 }
-
+*//*
 function test_input($data)
 {
 	$data = trim($data);
@@ -179,5 +180,5 @@ function test_input($data)
 	$data = htmlspecialchars($data);
 	return $data;
 }	
-
+*/
 ?>

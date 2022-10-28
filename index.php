@@ -2,6 +2,8 @@
 
 session_start();
 
+//session_unset();
+
 //require_once('session_manager.php');
 //require_once('validations.php');
 //require_once("user_service.php");
@@ -360,7 +362,7 @@ function endDocument()
    echo  '</html>'; 
 } 
 */
-function logToServer($message) {
+function logToServer($message) {   // wat moet hier mee? waar moet het?
     echo "logToServer: $message";
 }
 ?>

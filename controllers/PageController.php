@@ -5,6 +5,7 @@ require_once("models/PageModel.php");
 class PageController {
 
     private $model;
+    
 
 
     
@@ -14,7 +15,7 @@ class PageController {
 
     public function handleRequest() {
        $this->getRequest();
-      // $this->processRequest();
+       $this->processRequest();
        $this->showResponsePage();
    }
 
@@ -26,9 +27,10 @@ class PageController {
  
  
    // business flow code
-/*   private function processRequest() {
+   private function processRequest() {
        switch($this->model->page) {
        case "login":
+            require_once("models/UserModel.php");
             $this->model = new UserModel($this->model);
             $this->model->validateLogin();
             if ($this->model->valid) {
@@ -37,11 +39,13 @@ class PageController {
             }
             break;
         case 'logout':
+            require_once("models/UserModel.php");
             $this->model = new UserModel($this->model);
             $this->model->doLogoutUser(); 
             $this->model->setPage("home"); 
             break;
         case 'contact':
+            require_once("models/UserModel.php");
             $this->model = new UserModel($this->model);
             $this->model->validateContact();
             if ($this->model->valid) {
@@ -49,39 +53,43 @@ class PageController {
            }
            break;
         case 'register':
+            require_once("models/UserModel.php");
             $this->model = new UserModel($this->model);
             $this->model->validateRegister();
             if ($this->model->valid) {
                 try {
                     $this->model->storeUser();
+                    $this->model = new UserModel($this->model);
                     $this->model->setPage('login');
                 } catch (Exception $e) { // wat met de exceptions?
                     $this->model->genericErr = "Er is een technisch probleem opgetreden.";
-                    $this->model->logToServer("storeUser failed: ".$e->getMessage());
+                    logToServer("storeUser failed: ".$e->getMessage());
                 }
             }
-            break;
+            break; /*
         case "webshop":
-            $data = handleActions();
-            $data = array_merge($data, getWebshopProducts());
+            require_once("models/ShopModel.php")
+            $this->model = handleActions();
+            $this->model = array_merge($this->model, getWebshopProducts());
             break;
         case "detail":
-            $data = handleActions();
-            $id = getUrlVar("id");
-            $data = array_merge($data, getProductDetails($id));
+            require_once("models/ShopModel.php")
+            $this->model = handleActions();
+            $this->id = $this->sessionManger->getUrlVar("id");
+            $this->model = array_merge($this->model, getProductDetails($this->id));
             break;
         case "shoppingcart":
-            $data = handleActions();
-            $data = array_merge($data, getShoppingcartProducts());
+            require_once("models/ShopModel.php")
+            $this->model = handleActions();
+            $this->model = array_merge($this->model, getShoppingcartProducts());
             break;
         case "home":
-            $data = handleActions();
-            break;
-       
- 
+            require_once("models/ShopModel.php")
+            $this->model = handleActions();
+            break;*/
      }
  
-   } */
+   } 
  
    // to client: presentatie laag
    private function showResponsePage() {

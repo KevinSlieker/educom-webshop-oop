@@ -14,26 +14,27 @@
 
         protected function showFormItem($key, $type, $label, $placeholder = NULL, $options = array(), $rows = NULL, $cols = NULL) {
             echo '<label for="' . $key . '">' . $label . ' </label>' . PHP_EOL;
+            $error = ($key . 'Err');
                 if ($type == "select"){
                     echo '<' . $type . ' id="' . $key . '" name="' . $key . '">' . PHP_EOL;
-                    echo '<span class="error"> ' . $this->data['' . $key . 'Err'] . ' </span><br><br>' . PHP_EOL;
+                    //echo '<span class="error"> ' . $this->model->preambleErr . ' </span><br><br>' . PHP_EOL;
                     foreach($options as $english => $dutch){
-                    echo '<option value="' . $english .'"'; if (isset($this->data[$key]) && $this->data[$key] == "$english") echo "selected"; echo'>' . $dutch . '</option>' . PHP_EOL;
+                    echo '<option value="' . $english .'"'; if (isset($this->model->$key) && $this->model->$key == "$english") echo "selected"; echo'>' . $dutch . '</option>' . PHP_EOL;
                 }   echo '</select>' . PHP_EOL;
-                    echo '<span class="error"> ' . $this->data['' . $key . 'Err'] . ' </span><br><br>' . PHP_EOL;            
+                    echo '<span class="error"> ' . $this->model->$error . ' </span><br><br>' . PHP_EOL;            
                 }   
                 else if ($type == "radio") {
-                    echo '<span class="error"> ' . $this->data['' . $key . 'Err'] . ' </span><br>' . PHP_EOL;
+                    echo '<span class="error"> ' . $this->model->$error . ' </span><br>' . PHP_EOL;
                     foreach ($options as $english => $dutch) {
-                    echo  '<input type="radio" id="' . $key . $english . '" name="' . $key . '"'; if (isset($this->data[$key]) && $this->data[$key] == "$english") echo "checked"; echo' value="' . $english . '" > 
+                    echo  '<input type="radio" id="' . $key . $english . '" name="' . $key . '"'; if (isset($this->model->$key) && $this->model->$key == "$english") echo "checked"; echo' value="' . $english . '" > 
                             <label for="' . $key . $english . '">' . $dutch . '</label><br>';
                 } echo '<br>';
                 } else if ($type == "textarea") {
-                    echo '<textarea name ="' . $key . '" rows="' . $rows . '" cols="' . $cols . '" placeholder="' . $placeholder . '">' . $this->data[$key] . '</textarea><br><br>';
+                    echo '<textarea name ="' . $key . '" rows="' . $rows . '" cols="' . $cols . '" placeholder="' . $placeholder . '">' . $this->model->$key . '</textarea><br><br>';
                 }
                 else {
-                    echo '<input type="' . $type . '"id="' . $key . '" name="' . $key . '" value="' . $this->data[$key] . '" placeholder="' . $placeholder . '">' . PHP_EOL;
-                    echo '<span class="error"> ' . $this->data['' . $key . 'Err'] . ' </span><br><br>' . PHP_EOL;
+                    echo '<input type="' . $type . '"id="' . $key . '" name="' . $key . '" value="' . $this->model->$key . '" placeholder="' . $placeholder . '">' . PHP_EOL;
+                    echo '<span class="error"> ' . $this->model->$error . ' </span><br><br>' . PHP_EOL;
                 } 
         }
 

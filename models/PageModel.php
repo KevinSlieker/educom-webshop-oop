@@ -69,8 +69,8 @@ class PageModel {
         $this->menu['webshop'] = new MenuItem('webshop', 'Webshop');
         if ($this->sessionManager->isUserLoggedIn()) {
             $this->menu['shoppingcart'] = new MenuItem('shoppingcart', 'Shoppingcart');
-            $this->menu['logout'] = new MenuItem('logout', 'LOGOUT', 
-                                $this->sessionManager->getLoggedInUsername()['name']);
+            $this->menu['logout'] = new MenuItem('logout', 'Loguit '. 
+                                $this->sessionManager->getLoggedInUsername());
         } else {
             $this->menu['login'] = new MenuItem('login', 'Login');
             $this->menu['register'] = new MenuItem('register', 'Register');
