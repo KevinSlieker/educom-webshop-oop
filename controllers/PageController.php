@@ -1,9 +1,13 @@
 <?php
 
+require_once("models/PageModel.php");
+
 class PageController {
 
     private $model;
- 
+
+
+    
     public function __construct() {
        $this->model = new PageModel(NULL);
     }

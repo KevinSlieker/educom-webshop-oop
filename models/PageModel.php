@@ -1,12 +1,15 @@
 <?php
 
+require_once("MenuItem.php");
+require_once("session_manager.php");
+
 class PageModel {
     public $page;
     protected $isPost = false;
     public $menu;
     public $errors = array();
     public $genericErr = NULL;
-    protected $sessionManager;
+    protected SessionManager $sessionManager;
  
     // ...
  
@@ -38,24 +41,24 @@ class PageModel {
  
    
  
-    protected function setPage($newPage) {
+    public function setPage($newPage) {
         $this->page = $newPage;
     } 
  
 
-    protected function getArrayVar($array, $key, $default='') 
+    public function getArrayVar($array, $key, $default='') 
     {  
         return isset($array[$key]) ? $array[$key] : $default; 
     } 
 
     protected function getPostVar($key, $default='') 
     { 
-        return getArrayVar($_POST, $key, $default);
+        return $this->getArrayVar($_POST, $key, $default);
     }
 
     protected function getUrlVar($key, $default='') 
     { 
-        return getArrayVar($_GET, $key, $default);
+        return $this->getArrayVar($_GET, $key, $default);
     } 
  
  
@@ -64,10 +67,10 @@ class PageModel {
         $this->menu['about'] = new MenuItem('about', 'About');
         $this->menu['contact'] = new MenuItem('contact', 'Contact');
         $this->menu['webshop'] = new MenuItem('webshop', 'Webshop');
-        if ($this->sessionManger->isUserLoggedIn()) {
+        if ($this->sessionManager->isUserLoggedIn()) {
             $this->menu['shoppingcart'] = new MenuItem('shoppingcart', 'Shoppingcart');
             $this->menu['logout'] = new MenuItem('logout', 'LOGOUT', 
-                                $this->sessionManager->getLoggedInUser()['name']);
+                                $this->sessionManager->getLoggedInUsername()['name']);
         } else {
             $this->menu['login'] = new MenuItem('login', 'Login');
             $this->menu['register'] = new MenuItem('register', 'Register');

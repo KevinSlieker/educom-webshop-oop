@@ -2,20 +2,24 @@
 
 session_start();
 
-require_once('session_manager.php');
-require_once('validations.php');
-require_once("user_service.php");
-require_once("db_repository.php");
-require_once("forms.php");
-require_once("products_service.php");
+//require_once('session_manager.php');
+//require_once('validations.php');
+//require_once("user_service.php");
+//require_once("db_repository.php");
+//require_once("forms.php");
+//require_once("products_service.php");
+require_once("controllers/PageController.php");
 
-$page = getRequestedPage();
-$data = processRequest($page);
-showResponsePage($data);
+$controller = new PageController();
+$controller->handleRequest();
 
-var_dump($data);
-var_dump($_SESSION);
+//$page = getRequestedPage();
+//$data = processRequest($page);
+//showResponsePage($data);
 
+//var_dump($data);
+//var_dump($_SESSION);
+/*
 function processRequest($page)  {
 
     switch($page) {
@@ -77,7 +81,7 @@ function processRequest($page)  {
       }
       return $data;
  
-}
+}*/
 /* 
 function showContent($data) 
 { 
@@ -127,7 +131,7 @@ function showContent($data)
    }     
 }  
 */
-
+/*
 function getRequestedPage() 
 {     
    $requested_type = $_SERVER['REQUEST_METHOD']; 
@@ -203,7 +207,7 @@ function getPostVar($key, $default='')
 function getUrlVar($key, $default='') 
 { 
    return getArrayVar($_GET, $key, $default);
-} 
+} */
 /*
 function beginDocument() 
 { 
