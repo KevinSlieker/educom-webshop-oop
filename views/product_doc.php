@@ -4,7 +4,7 @@
     abstract class ProductDoc extends BasicDoc 
     { 
         protected function addAction($nextpage, $action, $button, $productId = NULL, $name = NULL, $addquantity = 0){
-            if (isUserLoggedIn()){
+            if ($this->model->canOrder){
                  echo '<form action="index.php" method="post">';
                  echo '<input type="hidden" name="action" value="' . $action . '">' . PHP_EOL;
                  if (!empty($productId)) {
@@ -15,8 +15,7 @@
                  }
                  echo '<input type="hidden" name="page" value="' . $nextpage . '">' . PHP_EOL;
                  if ($addquantity !== 0) {
-                      $cart = getShoppingcart();
-                      $quantity = ($addquantity + (float)getArrayVar($cart, $productId, 0));
+                      $quantity = ($addquantity + (float)$this->model->getArrayVar($this->model->cart, $productId, 0));
                       echo '<input type="hidden" name="quantity" value="' . $quantity . '">' . PHP_EOL;
                       if ($quantity == 0) {
                            echo '<input type="hidden" name="action" value="removeFromShoppingcart">' . PHP_EOL;

@@ -66,27 +66,31 @@ class PageController {
                     logToServer("storeUser failed: ".$e->getMessage());
                 }
             }
-            break; /*
+            break;
         case "webshop":
-            require_once("models/ShopModel.php")
-            $this->model = handleActions();
-            $this->model = array_merge($this->model, getWebshopProducts());
+            require_once("models/ShopModel.php");
+            $this->model = new ShopModel($this->model);
+            $this->model->handleActions();
+            $this->model->getWebshopProducts();
             break;
         case "detail":
-            require_once("models/ShopModel.php")
-            $this->model = handleActions();
-            $this->id = $this->sessionManger->getUrlVar("id");
-            $this->model = array_merge($this->model, getProductDetails($this->id));
+            require_once("models/ShopModel.php");
+            $this->model = new ShopModel($this->model);
+            $id = $this->getUrlVar("id");
+            $this->model->handleActions();
+            $this->model->getProductDetails($id);
             break;
         case "shoppingcart":
-            require_once("models/ShopModel.php")
-            $this->model = handleActions();
-            $this->model = array_merge($this->model, getShoppingcartProducts());
+            require_once("models/ShopModel.php");
+            $this->model = new ShopModel($this->model);
+            $this->model->handleActions();
+            $this->model->getShoppingcartProducts();
             break;
         case "home":
-            require_once("models/ShopModel.php")
-            $this->model = handleActions();
-            break;*/
+            require_once("models/ShopModel.php");
+            $this->model = new ShopModel($this->model);
+            $this->model->handleActions();
+            break;
      }
  
    } 
@@ -94,6 +98,7 @@ class PageController {
    // to client: presentatie laag
    private function showResponsePage() {
        $this->model->createMenu();
+
        switch($this->model->page) {
         case 'home':
             require_once("views/home_doc.php");
@@ -132,9 +137,20 @@ class PageController {
             $view = new ShoppingcartDoc($this->model);
             break;
         default:
-            var_dump($this->model->page);             
+            var_dump($this->model->page);
        }
        $view->show();
     }
+
+    public function getArrayVar($array, $key, $default='') 
+    {  
+        return isset($array[$key]) ? $array[$key] : $default; 
+    } 
+
+
+    protected function getUrlVar($key, $default='') 
+    { 
+        return $this->getArrayVar($_GET, $key, $default);
+    } 
 }
 ?>

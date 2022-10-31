@@ -16,7 +16,7 @@
         
         protected function mainContent() {
             echo '<div class="products">';
-            foreach($this->data['products'] as $product) {
+            foreach($this->model->products as $product) {
             echo '<div class="product"><a href="index.php?page=detail&id=' . $product['id'] . '">';
             echo '<h2>' . $product['name'] . '</h2>';
             echo '<img src="Images/' . $product['filename_img'] . '" alt="' . $product['name'] . '" width="60" height="80"></a>'. PHP_EOL;

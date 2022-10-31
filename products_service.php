@@ -1,5 +1,5 @@
 <?php
-
+/*
 function getWebshopProducts() {
     $products = array();
     $genericErr = NULL;
@@ -27,7 +27,7 @@ function getProductDetails($productId) {
     } 
      return array("product" => $product, "genericErr" => $genericErr);
 
-}
+}*/
 /*
 function addAction($nextpage, $action, $button, $productId = NULL, $name = NULL, $addquantity = 0){
      if (isUserLoggedIn()){
@@ -53,7 +53,7 @@ function addAction($nextpage, $action, $button, $productId = NULL, $name = NULL,
      }
 
 }
-*/
+*/ /*
 function handleActions(){
      $data = array();
      $action = getPostVar("action");
@@ -115,5 +115,5 @@ function getShoppingcartProducts() {
      }
      return array ("shoppingcartproducts" => $shoppingcartproducts, "total" => number_format((float)($total), 2), "genericErr" => $genericErr);
 }
-
+*/
 ?>

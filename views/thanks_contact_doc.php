@@ -23,17 +23,17 @@
             echo '<p class="thanks"> Bedankt voor het invullen van het contactformulier. </p>
             <br>
             <h3> Jouw gegevens:</h3>';
-            echo 'Aanhef: ' . PREAMBLE[$this->data['preamble']] . PHP_EOL;
+            echo 'Aanhef: ' . PREAMBLE[$this->model->preamble] . PHP_EOL;
             echo "<br>";
-            echo 'Naam: ' . $this->data['name']  . PHP_EOL;
+            echo 'Naam: ' . $this->model->name  . PHP_EOL;
             echo "<br>";
-            echo 'Email: ' .  $this->data['email'] . PHP_EOL;
+            echo 'Email: ' .  $this->model->email . PHP_EOL;
             echo "<br>";
-            echo 'Voorkeur communicatie: ' . COMMUNICATION[$this->data['communication']] . PHP_EOL;
+            echo 'Voorkeur communicatie: ' . COMMUNICATION[$this->model->communication] . PHP_EOL;
             echo "<br>";
-            echo 'Telefoonnummer: ' . $this->data['phonenumber'] . PHP_EOL;
+            echo 'Telefoonnummer: ' . $this->model->phonenumber . PHP_EOL;
             echo "<br>";
-            echo 'Text: ' . $this->data['input'] . PHP_EOL;
+            echo 'Text: ' . $this->model->input . PHP_EOL;
         }
     }
 ?>

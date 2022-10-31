@@ -16,8 +16,8 @@
         
         protected function mainContent() {
             echo '<div class="products">';
-            if (!empty($this->data['shoppingcartproducts'])){
-                foreach($this->data['shoppingcartproducts'] as $product) {  // echo '<p> ID:' . $productId . '</p>';
+            if (!empty($this->model->shoppingcartproducts)){
+                foreach($this->model->shoppingcartproducts as $product) {  // echo '<p> ID:' . $productId . '</p>';
                     echo '<div class="product"><a href="index.php?page=detail&id=' . $product['productId'] . '">';
                     echo '<h2>' . $product['name'] . '</h2>';
                     echo '<img src="Images/' . $product['filename_img'] . '" alt="' . $product['name'] . '" width="60" height="80"></a>' . PHP_EOL;
@@ -34,7 +34,7 @@
                     echo '</div></div></div>';
                 }
                 echo '<div class="total">';
-                echo '<p>Totaal: &euro;' . $this->data['total'] .  '</p>';
+                echo '<p>Totaal: &euro;' . $this->model->total .  '</p>';
                 $this->addAction('home','order', "Order");
                 echo '</div>';
             } else {

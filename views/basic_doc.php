@@ -44,11 +44,7 @@
 
             
         }
-        /*
-        private function showMenuItem($page, $label) {
-                return PHP_EOL.'<li><a Href="index.php?page='. $page .'">'.$label.'</a></li>';
-            }
-*/
+
         protected function mainContent() {
             echo '<p> Content </p>';
         }
