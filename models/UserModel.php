@@ -1,5 +1,9 @@
 <?php
 
+define("RESULT_OK", 0);
+define("RESULT_WRONG_PASSWORD", -1);
+define("RESULT_WRONG_EMAIL", -2);
+
 class UserModel extends PageModel {
 
     public $email = '';
@@ -19,12 +23,15 @@ class UserModel extends PageModel {
     public $input = '';
     public $inputErr = '';
     public $genericErr = NULL;
+    public $result = '';
 
     
     //...
 
     private $user_id = 0;
     public $valid = false;
+
+    
 
     public function __construct($pageModel) {
       PARENT::__construct($pageModel);
@@ -59,11 +66,11 @@ class UserModel extends PageModel {
             if (empty($this->emailErr) && empty($this->passwordErr)) {
                 try {
                     $this->authenticate = $this->authenticateUser($this->email, $this->password);
-                    switch($this->authenticate['result']) {
+                    switch($this->result) {
                         case RESULT_OK:
                             $this->valid = TRUE;
-                            $this->name = $this->authenticate['user']['name'];
-                            $this->user_id = $this->authenticate['user']['id'];
+                            $this->name = $this->user['name'];
+                            $this->user_id = $this->user['id'];
                             break;
                         case RESULT_WRONG_PASSWORD:
                             $this->passwordErr = "Verkeerd wachtwoord.";
@@ -83,17 +90,15 @@ class UserModel extends PageModel {
 
     private function authenticateUser() {
        require_once "db_repository.php";
-        define("RESULT_OK", 0);
-        define("RESULT_WRONG_PASSWORD", -1);
-        define("RESULT_WRONG_EMAIL", -2);
-       $this->user = findUserByEmail($this->email);
-        if (empty($this->user)) {
-             return array("result" => RESULT_WRONG_EMAIL, "user" => $this->user);
+       $user = findUserByEmail($this->email);
+        if (empty($user)) {
+             return $this->result = RESULT_WRONG_EMAIL;
         }
-        if ($this->user['password'] != $this->password) {
-            return array("result" => RESULT_WRONG_PASSWORD, "user" => $this->user);
+        if ($user['password'] != $this->password) {
+            return $this->result = RESULT_WRONG_PASSWORD;
         }
-        return array("result" => RESULT_OK, "user" => $this->user);
+        $this->user = $user;
+        return $this->result = RESULT_OK;
     }
 
     public function doLoginUser() {

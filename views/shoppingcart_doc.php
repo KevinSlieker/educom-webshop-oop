@@ -34,7 +34,7 @@
                     echo '</div></div></div>';
                 }
                 echo '<div class="total">';
-                echo '<p>Totaal: &euro;' . $this->model->total .  '</p>';
+                echo '<p>Totaal: &euro;' . number_format($this->model->total, 2) .  '</p>';
                 $this->addAction('home','order', "Order");
                 echo '</div>';
             } else {
