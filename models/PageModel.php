@@ -10,15 +10,18 @@ class PageModel {
     public $errors = array();
     public $genericErr = NULL;
     protected SessionManager $sessionManager;
+    protected $crud;
  
     // ...
  
  
  
-    public function __construct($copy) {
-       if (empty($copy)) {
+    public function __construct($copy, $crud=NULL) {
+       if (empty($copy) Or $crud !== NULL) {
            // ==> First instance of PageModel
            $this->sessionManager = new SessionManager();
+           $this->crud = $crud;
+           //var_dump($crud);
         } else {
            // ==> Called from the constructor of an extended class.... 
            $this->page = $copy->page;
@@ -26,6 +29,8 @@ class PageModel {
            $this->menu = $copy->menu;
            $this->genericErr = $copy->genericErr;
            $this->sessionManager = $copy->sessionManager; 
+           $this->crud = $copy->crud;
+           //var_dump($this->crud);
         }
     }
  

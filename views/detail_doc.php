@@ -15,7 +15,7 @@
 
         
         protected function mainContent() {
-            var_dump($this->model->product);
+            //var_dump($this->model->product);
             echo '<div class="detail">';
             echo '<h2>' . $this->model->product['name'] . '</h2>';
             echo '<img src="Images/' . $this->model->product['filename_img'] . '" alt="' . $this->model->product['name'] . '" width="150 height="300"><br><br>';

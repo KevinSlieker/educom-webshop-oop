@@ -11,8 +11,12 @@ session_start();
 //require_once("forms.php");
 //require_once("products_service.php");
 require_once("controllers/PageController.php");
+require_once("models/PageModel.php");
+require_once("crud/Crud.php");
 
-$controller = new PageController();
+$crud = new Crud();
+$pageModel = new PageModel(NULL, $crud);
+$controller = new PageController($pageModel);
 $controller->handleRequest();
 
 //$page = getRequestedPage();

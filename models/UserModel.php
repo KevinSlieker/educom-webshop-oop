@@ -4,6 +4,8 @@ define("RESULT_OK", 0);
 define("RESULT_WRONG_PASSWORD", -1);
 define("RESULT_WRONG_EMAIL", -2);
 
+include_once("./crud/UserCrud.php");
+
 class UserModel extends PageModel {
 
     public $email = '';
@@ -31,10 +33,11 @@ class UserModel extends PageModel {
     private $user_id = 0;
     public $valid = false;
 
-    
 
     public function __construct($pageModel) {
       PARENT::__construct($pageModel);
+      $this->crud = new UserCrud($this->crud);
+      //var_dump($this->crud);
     }
 
     public function test_input($data) {
@@ -69,8 +72,8 @@ class UserModel extends PageModel {
                     switch($this->result) {
                         case RESULT_OK:
                             $this->valid = TRUE;
-                            $this->name = $this->user['name'];
-                            $this->user_id = $this->user['id'];
+                            $this->name = $this->user->name;
+                            $this->user_id = $this->user->id;
                             break;
                         case RESULT_WRONG_PASSWORD:
                             $this->passwordErr = "Verkeerd wachtwoord.";
@@ -89,12 +92,11 @@ class UserModel extends PageModel {
     }
 
     private function authenticateUser() {
-       require_once "db_repository.php";
-       $user = findUserByEmail($this->email);
+       $user = $this->crud->readUserByEmail($this->email);
         if (empty($user)) {
              return $this->result = RESULT_WRONG_EMAIL;
         }
-        if ($user['password'] != $this->password) {
+        if ($user->password != $this->password) {
             return $this->result = RESULT_WRONG_PASSWORD;
         }
         $this->user = $user;
@@ -203,8 +205,7 @@ class UserModel extends PageModel {
     }
 
     public function doesEmailExist(){
-        require_once "db_repository.php";
-        $this->user = findUserByEmail($this->email);
+        $this->user = $this->crud->readUserByEmail($this->email);
         if (empty($this->user)) {
             return FALSE;
         } else {
@@ -213,8 +214,7 @@ class UserModel extends PageModel {
     }
     
     public function storeUser(){
-        require_once "db_repository.php";
-        saveUser($this->email,$this->name,$this->password);
+        $this->crud->createUser($this->email,$this->name,$this->password);
     }
 }
 

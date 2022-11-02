@@ -12,7 +12,6 @@ class Crud {
     try {
         $this->pdo = new PDO($this->connstring, $this->username, $this->password);
         $this->pdo -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connected successfully";
     } catch(PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
