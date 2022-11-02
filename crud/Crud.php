@@ -46,6 +46,13 @@ class Crud {
             }
         return $array;
     }
+
+    public function readAllRows($sql) {
+        $this->stmt = $this->pdo->prepare($sql);
+        $this->stmt->execute();
+        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+    }
+   
   
     public function updateRow($sql, $params) {
         $this -> prepareAndBind($sql, $params);
