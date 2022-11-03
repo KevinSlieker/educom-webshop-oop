@@ -17,7 +17,9 @@
         protected function mainContent() {
             echo '<div class="products">';
             if (!empty($this->model->shoppingcartproducts)){
+                //var_dump($this->model->shoppingcartproducts);
                 foreach($this->model->shoppingcartproducts as $product) {  // echo '<p> ID:' . $productId . '</p>';
+                    //var_dump($product);
                     echo '<div class="product"><a href="index.php?page=detail&id=' . $product['productId'] . '">';
                     echo '<h2>' . $product['name'] . '</h2>';
                     echo '<img src="Images/' . $product['filename_img'] . '" alt="' . $product['name'] . '" width="60" height="80"></a>' . PHP_EOL;

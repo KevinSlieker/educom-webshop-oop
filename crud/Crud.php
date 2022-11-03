@@ -37,7 +37,7 @@ class Crud {
         return $stmt->fetch();
     }
   
-    public function readMultipleRows($sql, $params) {
+    public function readMultipleRows($sql, $params = array()) {
         $stmt = $this -> prepareAndBind($sql, $params);
         $results = $stmt->fetchAll();
         $array = array();
@@ -48,9 +48,7 @@ class Crud {
     }
 
     public function readAllRows($sql) {
-        $this->stmt = $this->pdo->prepare($sql);
-        $this->stmt->execute();
-        return $this->stmt->fetchAll(PDO::FETCH_OBJ);
+      return $this->readMultipleRows($sql);
     }
    
   

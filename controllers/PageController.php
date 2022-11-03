@@ -78,26 +78,34 @@ class PageController {
             break;
         case "webshop":
             require_once("models/ShopModel.php");
-            $this->model = new ShopModel($this->model);
+            require_once("crud/ShopCrud.php");
+            $shopcrud = new ShopCrud($this->model->crud);
+            $this->model = new ShopModel($this->model, $shopcrud);
             $this->model->handleActions();
             $this->model->getWebshopProducts();
             break;
         case "detail":
             require_once("models/ShopModel.php");
-            $this->model = new ShopModel($this->model);
+            require_once("crud/ShopCrud.php");
+            $shopcrud = new ShopCrud($this->model->crud);
+            $this->model = new ShopModel($this->model, $shopcrud);
             $id = $this->getUrlVar("id");
             $this->model->handleActions();
             $this->model->getProductDetails($id);
             break;
         case "shoppingcart":
             require_once("models/ShopModel.php");
-            $this->model = new ShopModel($this->model);
+            require_once("crud/ShopCrud.php");
+            $shopcrud = new ShopCrud($this->model->crud);
+            $this->model = new ShopModel($this->model, $shopcrud);
             $this->model->handleActions();
             $this->model->getShoppingcartProducts();
             break;
         case "home":
             require_once("models/ShopModel.php");
-            $this->model = new ShopModel($this->model);
+            require_once("crud/ShopCrud.php");
+            $shopcrud = new ShopCrud($this->model->crud);
+            $this->model = new ShopModel($this->model, $shopcrud);
             $this->model->handleActions();
             break;
      }

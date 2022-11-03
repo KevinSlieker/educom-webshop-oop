@@ -12,7 +12,7 @@ class ShopModel extends PageModel {
     public $productId = '';
     public $quantity = '';
     private $user_id = 0;
-    public $shoppingcartproducts = '';
+    public $shoppingcartproducts = array();
     public $total = '';
     public $shoppingcart = '';
     public $shoppingcartproduct = '';
@@ -21,8 +21,9 @@ class ShopModel extends PageModel {
     public $cart = array();
     //public $detail_id = '';
 
-    public function __construct($pageModel) {
+    public function __construct($pageModel, $shopcrud) {
         PARENT::__construct($pageModel);
+        $this->crud = $shopcrud;
 
 
         //$this->detail_id = $this->getUrlVar("id");
@@ -36,11 +37,10 @@ class ShopModel extends PageModel {
 
 
     function getWebshopProducts() {
-        require_once('db_repository.php');
         $this->products = array();
         $this->genericErr = NULL;
         try {
-             $this->products = getAllProducts();
+             $this->products = $this->crud->readAllProducts();
         }
         catch (Exception $e) {
              $this->genericErr = "Sorry, kan geen producten laten zien op dit moment.";  // <-- foutmelding voor de user
@@ -52,11 +52,10 @@ class ShopModel extends PageModel {
     
     
     function getProductDetails($productId) {
-        require_once('db_repository.php');
         $this->product = NULL;
         $this->genericErr = NULL;
         try {
-             $this->product = findProductById($productId);
+             $this->product = $this->crud->readProductById($productId);
         }
         catch (Exception $e) {
              $this->genericErr = "Sorry, kan geen details laten zien op dit moment.";  // <-- foutmelding voor de user
@@ -89,10 +88,9 @@ class ShopModel extends PageModel {
    }
    
    function storeOrder() {
-        require_once('db_repository.php');
         $this->genericErr = NULL;
         try{
-        saveOrder($this->user_id, $this->shoppingcartproducts);
+        $this->crud->createOrder($this->user_id, $this->shoppingcartproducts);
         $this->sessionManager->emptyShoppingcart();
         }     catch (Exception $e) {
              $this->genericErr = "Sorry, kan de bestelling niet verwerken.";  // <-- foutmelding voor de user
@@ -103,7 +101,6 @@ class ShopModel extends PageModel {
    
    
    function getShoppingcartProducts() {
-        require_once('db_repository.php');
         $this->shoppingcartproducts = array();
         $this->total = 0;
         $this->genericErr= NULL;
@@ -111,15 +108,18 @@ class ShopModel extends PageModel {
         try {
              $shoppingcart = $this->sessionManager->getShoppingcart();
              //var_dump($shoppingcart);
-             $products = getAllProducts();
+             $products = $this->crud->readAllProducts();
+             //var_dump($products);
    
              foreach ($shoppingcart as $productId => $quantity) {
                   $product = $this->getArrayVar($products, $productId, NULL);
+                  //var_dump($product);
              
-             $subtotal = number_format((float)($quantity * $product['price']), 2);
+             $subtotal = number_format((float)($quantity * $product->price), 2);
              $shoppingcartproduct = array ('productId' => $productId, 'quantity' => $quantity, 'subtotal' => $subtotal, 
-             'price' => $product['price'], 'name' => $product['name'], 'filename_img' => $product['filename_img']);
-             $this->shoppingcartproducts[] = $shoppingcartproduct;
+             'price' => $product->price, 'name' => $product->name, 'filename_img' => $product->filename_img);
+             $this->shoppingcartproducts[$shoppingcartproduct['productId']] = $shoppingcartproduct;
+             //var_dump($shoppingcartproduct);
              $this->total += $subtotal;
              }
              //print_r($this->shoppingcartproducts);
