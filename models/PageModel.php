@@ -10,7 +10,7 @@ class PageModel {
     public $errors = array();
     public $genericErr = NULL;
     protected SessionManager $sessionManager;
-    protected $crud;
+    public $crud;
  
     // ...
  

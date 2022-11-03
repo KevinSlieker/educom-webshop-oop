@@ -34,9 +34,9 @@ class UserModel extends PageModel {
     public $valid = false;
 
 
-    public function __construct($pageModel) {
+    public function __construct($pageModel, $usercrud) {
       PARENT::__construct($pageModel);
-      $this->crud = new UserCrud($this->crud);
+      $this->crud = $usercrud;
       //var_dump($this->crud);
     }
 
@@ -214,7 +214,7 @@ class UserModel extends PageModel {
     }
     
     public function storeUser(){
-        $this->crud->createUser($this->email,$this->name,$this->password);
+        $this->crud->createUser($this->name,$this->email,$this->password);
     }
 }
 

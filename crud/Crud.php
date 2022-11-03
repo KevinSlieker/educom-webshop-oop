@@ -2,7 +2,7 @@
 
 class Crud {
 
-    private $pdo;
+    public $pdo;
     private $connstring = "mysql:host=127.0.0.1;dbname=kevins_webshop";
     private $username = "Kevins_WebShopUser";
     private $password = "GebruikerWebShop";

@@ -31,7 +31,9 @@ class PageController {
        switch($this->model->page) {
        case "login":
             require_once("models/UserModel.php");
-            $this->model = new UserModel($this->model);
+            require_once("crud/UserCrud.php");
+            $usercrud = new UserCrud($this->model->crud);
+            $this->model = new UserModel($this->model, $usercrud);
             $this->model->validateLogin();
             if ($this->model->valid) {
                 $this->model->doLoginUser();
@@ -40,13 +42,17 @@ class PageController {
             break;
         case 'logout':
             require_once("models/UserModel.php");
-            $this->model = new UserModel($this->model);
+            require_once("crud/UserCrud.php");
+            $usercrud = new UserCrud($this->model->crud);
+            $this->model = new UserModel($this->model, $usercrud);
             $this->model->doLogoutUser(); 
             $this->model->setPage("home"); 
             break;
         case 'contact':
             require_once("models/UserModel.php");
-            $this->model = new UserModel($this->model);
+            require_once("crud/UserCrud.php");
+            $usercrud = new UserCrud($this->model->crud);
+            $this->model = new UserModel($this->model, $usercrud);
             $this->model->validateContact();
             if ($this->model->valid) {
                 $this->model->setPage('thanks');
@@ -54,12 +60,15 @@ class PageController {
            break;
         case 'register':
             require_once("models/UserModel.php");
-            $this->model = new UserModel($this->model);
+            require_once("crud/UserCrud.php");
+            $usercrud = new UserCrud($this->model->crud);
+            $this->model = new UserModel($this->model, $usercrud);
             $this->model->validateRegister();
             if ($this->model->valid) {
                 try {
                     $this->model->storeUser();
-                    $this->model = new UserModel($this->model);
+                    $usercrud = new UserCrud($this->model->crud);
+                    $this->model = new UserModel($this->model, $usercrud);
                     $this->model->setPage('login');
                 } catch (Exception $e) { // wat met de exceptions?
                     $this->model->genericErr = "Er is een technisch probleem opgetreden.";

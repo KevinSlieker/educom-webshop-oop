@@ -117,7 +117,7 @@ function saveOrder($user_id, $shoppingcartproducts){
             $sql =  "INSERT INTO product_orders (order_id, product_id, quantity, price) VALUE ('$oderId', '" . $product['productId'] . "', '" . $product['quantity'] . "', '" . $product['price'] . "')";
             $result = mysqli_query($conn, $sql);
             if ($result == false) {
-                throw new Exception("saveOrder failed, SQL: " . $sql . "Error: " . mysqli_error($conn));
+                throw new Exception("saveOrder failed product, SQL: " . $sql . "Error: " . mysqli_error($conn));
             }
         }
         if (!mysqli_commit($conn)){ //transactie stoppen als er ergens iets verkeert is gegaan en dan een exception gooien

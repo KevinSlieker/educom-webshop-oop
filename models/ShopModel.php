@@ -81,6 +81,7 @@ class ShopModel extends PageModel {
                   break;
              case "order":
                   $this->user_id = $this->sessionManager->getUser_Id();
+                  //print_r($this->user_id);
                   $this->getShoppingcartProducts(); 
                   $this->storeOrder();
                   break;
@@ -90,7 +91,6 @@ class ShopModel extends PageModel {
    function storeOrder() {
         require_once('db_repository.php');
         $this->genericErr = NULL;
-   
         try{
         saveOrder($this->user_id, $this->shoppingcartproducts);
         $this->sessionManager->emptyShoppingcart();
@@ -107,8 +107,10 @@ class ShopModel extends PageModel {
         $this->shoppingcartproducts = array();
         $this->total = 0;
         $this->genericErr= NULL;
+        //print_r($this->user_id);
         try {
              $shoppingcart = $this->sessionManager->getShoppingcart();
+             //var_dump($shoppingcart);
              $products = getAllProducts();
    
              foreach ($shoppingcart as $productId => $quantity) {
@@ -120,6 +122,8 @@ class ShopModel extends PageModel {
              $this->shoppingcartproducts[] = $shoppingcartproduct;
              $this->total += $subtotal;
              }
+             //print_r($this->shoppingcartproducts);
+             //var_dump($this->shoppingcartproducts);
         }     catch (Exception $e) {
              $this->genericErr = "Sorry, kan geen producten laten zien op dit moment.";  // <-- foutmelding voor de user
              logToServer("GetAllProducts failed  " . $e -> getMessage() );

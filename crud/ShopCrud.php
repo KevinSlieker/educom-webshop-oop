@@ -10,8 +10,8 @@ class ShopCrud {
 
     public function createOrder($user_id, $shoppingcartproducts){
         try {
-            $this->pdo->beginTransaction();
-            $params = get_defined_vars();
+            $this->crud->pdo->beginTransaction();
+            $params = array ("user_id" => $user_id);
             $sql = "INSERT INTO orders (user_id, `date`) VALUE (:user_id, CURRENT_DATE())";
             $orderId = $this->crud->createRow($sql, $params);
             foreach($shoppingcartproducts as $product){
@@ -19,10 +19,10 @@ class ShopCrud {
                 $sql =  "INSERT INTO product_orders (order_id, product_id, quantity, price) VALUE (:orderId, :productId, :quantity, :price)";
                 $this->crud->createRow($sql, $params);
             }
-            $this->pdo->commit(); //pdo::commit()
+            $this->crud->pdo->commit(); //pdo::commit()
             } 
         catch (PDOException $e) {
-            $this->pdo->rollback(); //pdo::rollback()
+            $this->crud->pdo->rollBack(); //pdo::rollback()
             throw $e;
         }
     }
