@@ -118,7 +118,7 @@ class ShopModel extends PageModel {
              $subtotal = number_format((float)($quantity * $product->price), 2);
              $shoppingcartproduct = array ('productId' => $productId, 'quantity' => $quantity, 'subtotal' => $subtotal, 
              'price' => $product->price, 'name' => $product->name, 'filename_img' => $product->filename_img);
-             $this->shoppingcartproducts[$shoppingcartproduct['productId']] = $shoppingcartproduct;
+             $this->shoppingcartproducts[$productId] = $shoppingcartproduct;
              //var_dump($shoppingcartproduct);
              $this->total += $subtotal;
              }
